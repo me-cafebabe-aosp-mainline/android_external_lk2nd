@@ -3478,12 +3478,7 @@ void cmd_boot(const char *arg, void *data, unsigned sz)
 		   boot_type);
 
 	/* fastboot already stop, it's no need to show fastboot menu */
-	return;
 boot_failed:
-#if FBCON_DISPLAY_MSG || WITH_LK2ND_DEVICE_MENU
-	/* revert to fastboot menu if boot failed */
-	display_fastboot_menu();
-#endif
 	return;
 }
 

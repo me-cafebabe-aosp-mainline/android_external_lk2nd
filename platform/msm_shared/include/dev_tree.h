@@ -76,7 +76,6 @@
 #define PLAT_ID_SIZE            0x8
 #define BOARD_ID_SIZE           0x8
 #define PMIC_ID_SIZE           0x8
-#define DT_ENTRY_LGE8974_SIZE   16
 
 typedef enum {
 	NONE_MATCH,

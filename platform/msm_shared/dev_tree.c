@@ -624,7 +624,7 @@ void *get_soc_dtb(void *kernel, void *tags, uint32_t kernel_size, uint32_t dtb_o
 {
 	uintptr_t kernel_end_offset = (uintptr_t)kernel + kernel_size;
 	void *dtb = NULL;
-	struct fdt_header dtb_header __ALIGNED(8);
+	struct fdt_header dtb_header;
 	uint32_t dtb_size = 0;
 	dt_info cur_dtb_info = {0};
 	dt_info best_dtb_info = {0};
@@ -706,7 +706,7 @@ void *get_board_dtb(void *dtbo_image_buf, uint32_t dtbo_image_sz)
 	void *board_dtb = NULL;
 	uint32_t dtbo_table_entries_count = 0;
 	uint32_t first_dtbo_table_entry_offset = 0;
-	struct fdt_header dtb_header __ALIGNED(8);
+	struct fdt_header dtb_header;
 	uint32_t dtb_size = 0;
 	dt_info cur_dtb_info = {0};
 	dt_info best_dtb_info = {0};
@@ -1291,7 +1291,7 @@ void *dev_tree_appended(void *kernel, uint32_t kernel_size, uint32_t dtb_offset,
 	dtb = (void *)((uintptr_t)kernel + app_dtb_offset);
 
 	while (((uintptr_t)dtb + sizeof(struct fdt_header)) < (uintptr_t)kernel_end) {
-		struct fdt_header dtb_hdr __ALIGNED(8);
+		struct fdt_header dtb_hdr;
 		uint32_t dtb_size;
 
 		/* the DTB could be unaligned, so extract the header,

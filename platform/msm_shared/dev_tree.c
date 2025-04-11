@@ -1318,11 +1318,13 @@ void *dev_tree_appended(void *kernel, uint32_t kernel_size, uint32_t dtb_offset,
 	dt_entry_queue->dt_entry_m = NULL;
 
 	if (((uintptr_t)kernel + (uintptr_t)app_dtb_offset) < (uintptr_t)kernel) {
+		dprintf(INFO, "((uintptr_t)kernel + (uintptr_t)app_dtb_offset) < (uintptr_t)kernel\n");
 		return NULL;
 	}
 	dtb = (void *)((uintptr_t)kernel + app_dtb_offset);
 
 	while (((uintptr_t)dtb + sizeof(struct fdt_header)) < (uintptr_t)kernel_end) {
+		dprintf(INFO, "parse one dtb begin.\n");
 		struct fdt_header dtb_hdr __ALIGNED(8);
 		void *dtb_aligned = dtb;
 		uint32_t dtb_size;
@@ -1333,8 +1335,10 @@ void *dev_tree_appended(void *kernel, uint32_t kernel_size, uint32_t dtb_offset,
 		if (fdt_check_header((const void *)&dtb_hdr) != 0 ||
 		    fdt_check_header_ext((const void *)&dtb_hdr) != 0 ||
 		    ((uintptr_t)dtb + (uintptr_t)fdt_totalsize((const void *)&dtb_hdr) < (uintptr_t)dtb) ||
-			((uintptr_t)dtb + (uintptr_t)fdt_totalsize((const void *)&dtb_hdr) > (uintptr_t)kernel_end))
+			((uintptr_t)dtb + (uintptr_t)fdt_totalsize((const void *)&dtb_hdr) > (uintptr_t)kernel_end)) {
+			dprintf(INFO, "ERROR: fdt_check_header fails.\n");
 			break;
+		}
 		dtb_size = fdt_totalsize(&dtb_hdr);
 
 		/* Need to copy DTB if not aligned properly :/ */
@@ -1352,6 +1356,7 @@ void *dev_tree_appended(void *kernel, uint32_t kernel_size, uint32_t dtb_offset,
 		/* goto the next device tree if any */
 		dtb += dtb_size;
 		dtb_count++;
+		dprintf(INFO, "parse one dtb end.\n");
 	}
 
 	if (list_is_empty(&dt_entry_queue->node) && (dtb_count == 1)) {

@@ -1678,7 +1678,7 @@ retry_boot:
 	 * the device would repeat booting into lk2nd forever.
 	 * Prevent this to happen.
 	*/
-	if (strstr(hdr->cmdline, "lk2nd")) {
+	if (strstr((const char *)hdr->cmdline, "lk2nd")) {
 		dprintf(CRITICAL, "ERROR: lk2nd detected on partition %s. As the current bootloader is already lk2nd, Prevent entering the loop of booting lk2nd from mmc repeatly.\n", ptn_name);
 		return ERR_REPEAT_BOOT_LK2ND;
 	}

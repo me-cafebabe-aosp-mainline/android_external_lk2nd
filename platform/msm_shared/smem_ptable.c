@@ -311,11 +311,15 @@ uint32_t get_ddr_start(void)
 	for(i = 0; i < len; i++)
 	{
 		smem_get_ram_ptable_entry(&ptn_entry, i);
-		if (smem_ram_ptn_is_ddr(&ptn_entry))
+		if(ptn_entry.type == SYS_MEMORY)
 		{
-			/* Check to ensure that start address is 1MB aligned */
-			if ((ptn_entry.start & (MB-1)) == 0)
+			if((ptn_entry.category == SDRAM) ||
+			   (ptn_entry.category == IMEM))
+			{
+				/* Check to ensure that start address is 1MB aligned */
+				ASSERT((ptn_entry.start & (MB-1)) == 0);
 				return ptn_entry.start;
+			}
 		}
 	}
 	ASSERT("DDR Start Mem Not found\n");
@@ -337,7 +341,7 @@ uint64_t smem_get_ddr_size(void)
 	for(i = 0; i < len; i++)
 	{
 		smem_get_ram_ptable_entry(&ptn_entry, i);
-		if (smem_ram_ptn_is_ddr(&ptn_entry))
+		if(ptn_entry.type == SYS_MEMORY && ptn_entry.category == SDRAM)
 			size += ptn_entry.size;
 	}
 

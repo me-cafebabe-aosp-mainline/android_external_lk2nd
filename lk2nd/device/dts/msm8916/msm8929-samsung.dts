@@ -39,7 +39,7 @@
 		compatible = "samsung,j7-chn", "samsung,j7";
 		lk2nd,match-bootloader = "J7008*";
 
-		// FIXME: lk2nd,dtb-files = "msm8929-samsung-j7";
+		lk2nd,dtb-files = "msm8929-samsung-j7ltechn";
 
 		qcom,msm-id = <QCOM_ID_MSM8929 0>;
 		qcom,board-id = <0x0C01FF01 4>;

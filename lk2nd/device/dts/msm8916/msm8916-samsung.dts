@@ -228,7 +228,7 @@
 		compatible = "samsung,j5ltechn", "samsung,j5";
 		lk2nd,match-bootloader = "J5008*";
 
-		lk2nd,dtb-files = "msm8916-samsung-j5";
+		lk2nd,dtb-files = "msm8916-samsung-j5ltechn";
 
 		qcom,msm-id = <QCOM_ID_MSM8916 0>;
 		qcom,board-id = <0xCE08FF01 1>;
@@ -238,6 +238,22 @@
 			i2c-reg = <0x25>;
 			i2c-sda-gpios = <&tlmm 105 I2C_GPIO_FLAGS>;
 			i2c-scl-gpios = <&tlmm 106 I2C_GPIO_FLAGS>;
+		};
+
+		panel {
+			compatible = "samsung,j5ltechn-panel", "lk2nd,panel";
+
+			ss_dsi_panel_ILI6236S_CPT50_HD {
+				compatible = "samsung,ili6236s-cpt50";
+			};
+
+			ss_dsi_panel_ILI9881C_SKI499017_HD {
+				compatible = "samsung,ili9881c-ski499017";
+			};
+
+			ss_dsi_panel_S6D7AA0X62_BV050HDM_HD {
+				compatible = "samsung,s6d7aa0x62-bv050hdm";
+			};
 		};
 	};
 
@@ -467,7 +483,7 @@
 		compatible = "samsung,j3xprolte-chnopen", "samsung,j3xpro";
 		lk2nd,match-bootloader = "J3110*";
 
-		// FIXME: lk2nd,dtb-files = "msm8916-samsung-j3xpro";
+		lk2nd,dtb-files = "msm8916-samsung-j3xprolte-chnopen";
 
 		qcom,msm-id = <QCOM_ID_MSM8916 0>;
 		qcom,board-id = <0xCE08FF01 3>;
@@ -485,7 +501,7 @@
 		compatible = "samsung,j3xprolte-chnctc", "samsung,j3xpro";
 		lk2nd,match-bootloader = "J3119*";
 
-		// FIXME: lk2nd,dtb-files = "msm8916-samsung-j3xpro";
+		lk2nd,dtb-files = "msm8916-samsung-j3xprolte-chnctc";
 
 		qcom,msm-id = <QCOM_ID_MSM8916 0>;
 		qcom,board-id = <0xCE08FF01 3>;

@@ -22,12 +22,15 @@
 
 		qcom,mdss_dsi_hx8394f_boe_720p_video {
 			compatible = "xiaomi,land-hx8394f-boe";
+			touchscreen-compatible = "edt,edt-ft5306";
 		};
 		qcom,mdss_dsi_ili9881c_tianma_720p_video {
 			compatible = "xiaomi,land-ili9881c-tianma";
+			touchscreen-compatible = "edt,edt-ft5306";
 		};
 		qcom,mdss_dsi_nt35521s_ebbg_720p_video {
 			compatible = "xiaomi,land-nt35521s-ebbg";
+			touchscreen-compatible = "imagis,ist3038c";
 		};
 	};
 };

@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: BSD-3-Clause
+
+/dts-v1/;
+
+#include <skeleton64.dtsi>
+#include <lk2nd.dtsi>
+
+/ {
+	qcom,msm-id = <QCOM_ID_MSM8937 0>;
+	qcom,board-id = <QCOM_BOARD_ID(QRD, 3, 0) 0>;
+};
+
+&lk2nd {
+	model = "Qualcomm MSM8937-PMI8950 QRD SKU1";
+	compatible = "qcom,msm8937-qrd-sku1";
+
+	lk2nd,dtb-files = "msm8937-qcom-qrd-sku1";
+};
